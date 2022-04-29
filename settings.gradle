@@ -1,0 +1,2 @@
+rootProject.name = "Tp_android"
+include ':app'
