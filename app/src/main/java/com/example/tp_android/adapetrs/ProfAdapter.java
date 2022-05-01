@@ -5,9 +5,13 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.tp_android.R;
 import com.example.tp_android.model.Professeur;
@@ -62,5 +66,35 @@ public class ProfAdapter extends BaseAdapter {
 
 
         return view;
+
     }
+
 }
+
+//public class ProfAdapter extends ArrayAdapter<Professeur> {
+//
+//    public ProfAdapter(Context context,LinkedList<Professeur> professeurList){
+//        super(context,R.layout.adpter_item,professeurList);
+//    }
+//
+//    @NonNull
+//    @Override
+//    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+//
+//        Professeur prof = getItem(position);
+//
+//        if(convertView==null){
+//            convertView = LayoutInflater.from(getContext()).inflate(R.layout.adpter_item,parent,false);
+//        }
+//
+//        ImageView imageView = convertView.findViewById(R.id.prof_icon);
+//        TextView itemNameView= convertView.findViewById(R.id.name_prof);
+//        TextView itemDepatementView= convertView.findViewById(R.id.departement_prof);
+//
+//        itemNameView.setText(prof.getNom());
+//        itemDepatementView.setText(prof.getDepartement());
+//
+//
+//        return super.getView(position, convertView, parent);
+//    }
+//}
