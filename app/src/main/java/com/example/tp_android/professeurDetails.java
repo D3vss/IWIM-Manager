@@ -14,6 +14,7 @@ public class professeurDetails extends AppCompatActivity {
     TextView prenom_prof;
     TextView tel_prof;
     TextView departement_prof;
+    ImageView backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,11 @@ public class professeurDetails extends AppCompatActivity {
         prenom_prof = (TextView) findViewById(R.id.prof_prenom);
         tel_prof =(TextView) findViewById(R.id.prof_phone);
         departement_prof =(TextView) findViewById(R.id.prof_dept);
+        backButton = findViewById(R.id.Go_back);
+
+        backButton.setOnClickListener(view ->{
+            startActivity(new Intent(professeurDetails.this, ListeProfesseursActivity.class));
+        });
 
         Intent intent = getIntent();
 
