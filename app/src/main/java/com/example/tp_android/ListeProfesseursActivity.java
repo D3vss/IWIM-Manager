@@ -2,7 +2,9 @@ package com.example.tp_android;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.LauncherActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,9 +24,11 @@ import com.example.tp_android.adapetrs.ProfAdapter;
 import com.example.tp_android.databinding.ActivityMainBinding;
 import com.example.tp_android.model.Professeur;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -71,6 +75,19 @@ public class ListeProfesseursActivity extends AppCompatActivity {
     void getallProfesseurs(){
 
         showProgressDialog();
+        //test
+        Task<QuerySnapshot> snapshot = db.collection("professeur").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull  Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        System.out.println(document.getId()+"55EWAAA");
+                    }
+                }
+            }
+        });
+
+        //end test
         db.collection("professeur")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -78,6 +95,7 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                System.out.println(document.getId());
                                 System.out.println(document.getString("nom"));
                                 System.out.println(document.getString("prenom"));
                                 System.out.println(document.getString("tel"));
@@ -88,7 +106,8 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                                         document.getString("prenom"),
                                         document.getString("tel"),
                                         document.getString("photo"),
-                                        document.getString("departement"));
+                                        document.getString("departement"),
+                                        document.getId());
                                 profs.add(p);
                             }
                             System.out.println(profs);
@@ -134,6 +153,52 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                                    intent.putExtra("departement",departement);
                                    startActivity(intent);
                                }
+                       );
+
+                       profView.setOnItemLongClickListener(
+
+                               (parent,view,position,id)->{
+
+                           AlertDialog.Builder builder=new AlertDialog.Builder(ListeProfesseursActivity.this).setTitle("Attention");
+                           String[] options ={"Update","Delete"};
+
+
+
+                           builder.setItems(options, new DialogInterface.OnClickListener() {
+                               @Override
+                               public void onClick(DialogInterface dialogInterface, int i) {
+                                   if(i==0){
+                                        //update is clicked
+                                       Professeur p= (Professeur) profView.getItemAtPosition(position);
+                                       String nom=p.getNom();
+                                       String prenom=p.getPrenom();
+                                       String tel=p.getTel();
+                                       String image=p.getPhoto();
+                                       String departement=p.getDepartement();
+                                       //get id
+                                         String id = p.getIdProf();
+                                       //end get id
+//                                   Toast.makeText(getApplicationContext(),"string to show",Toast.LENGTH_LONG).show();
+                                       Intent intent = new Intent(getApplicationContext(), UpdateProfActivity.class);
+                                       intent.putExtra("nom",nom);
+                                       intent.putExtra("prenom",prenom);
+                                       intent.putExtra("tel",tel);
+                                       intent.putExtra("image",image);
+                                       intent.putExtra("departement",departement);
+
+                                       intent.putExtra("idUser",id);
+                                       startActivity(intent);
+
+                                   }else{
+                                       //delete is clicked
+
+                                   }
+                               }
+                           });
+                                   AlertDialog alert = builder.create();
+                                   alert.show();
+                                   return true;
+                       }
                        );
 
 

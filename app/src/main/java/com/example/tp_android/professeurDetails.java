@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,6 @@ import java.io.IOException;
 
 public class professeurDetails extends AppCompatActivity {
 
-
     TextView name_prof;
     TextView prenom_prof;
     TextView tel_prof;
@@ -37,6 +37,7 @@ public class professeurDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professeur_details);
+
 
         name_prof = (TextView) findViewById(R.id.name_prof);
         profile_prof = (ImageView) findViewById(R.id.profile_image);
@@ -82,7 +83,7 @@ public class professeurDetails extends AppCompatActivity {
                     Bitmap bitmap = BitmapFactory.decodeFile(locationFile.getAbsolutePath());
                     profile_prof.setImageBitmap(bitmap);
                     //end
-                    Toast.makeText(getApplicationContext(),"profile prof",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"profile prof image done",Toast.LENGTH_LONG).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -93,13 +94,16 @@ public class professeurDetails extends AppCompatActivity {
         }catch (IOException e){
             e.printStackTrace();
         }
+
+
+
         System.out.println(storageRef.getFile(imageUrl)+"HANA11");
 
-
-
-
-
         System.out.println(imageUrl+"wsslt");
+
+
+
+
 
 
 

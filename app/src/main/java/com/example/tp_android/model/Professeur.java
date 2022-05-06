@@ -10,17 +10,27 @@ public class Professeur {
     //private LinkedList<Groupe> liste_groupe;
     private String photo;
     private String departement;
+    private String idProf;
 
 
 
-    public Professeur(String nom, String prenom, String tel, String photo, String departement){
+    public Professeur(String nom, String prenom, String tel, String photo, String departement,String idProf){
         this.nom= new String(nom);
         this.prenom= new String(prenom);
         this.tel= new String(tel);
         this.photo= new String(photo);
         this.departement= new String(departement);
+        this.idProf= new String(idProf);
         //this.liste_groupe=liste_groupe;
 
+    }
+
+    public String getIdProf() {
+        return idProf;
+    }
+
+    public void setIdProf(String idProf) {
+        this.idProf = idProf;
     }
 
     public String getNom() {
