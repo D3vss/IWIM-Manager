@@ -125,7 +125,7 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                                    String tel=p.getTel();
                                    String image=p.getPhoto();
                                    String departement=p.getDepartement();
-//                                   Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+//                                   Toast.makeText(getApplicationContext(),"string to show",Toast.LENGTH_LONG).show();
                                    Intent intent = new Intent(getApplicationContext(), professeurDetails.class);
                                    intent.putExtra("nom",nom);
                                    intent.putExtra("prenom",prenom);

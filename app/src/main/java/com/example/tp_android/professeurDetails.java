@@ -1,11 +1,26 @@
 package com.example.tp_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.io.IOException;
 
 public class professeurDetails extends AppCompatActivity {
 
@@ -14,13 +29,17 @@ public class professeurDetails extends AppCompatActivity {
     TextView prenom_prof;
     TextView tel_prof;
     TextView departement_prof;
+    ImageView profile_prof;
     ImageView backButton;
+    StorageReference storageRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professeur_details);
 
         name_prof = (TextView) findViewById(R.id.name_prof);
+        profile_prof = (ImageView) findViewById(R.id.profile_image);
         prenom_prof = (TextView) findViewById(R.id.prof_prenom);
         tel_prof =(TextView) findViewById(R.id.prof_phone);
         departement_prof =(TextView) findViewById(R.id.prof_dept);
@@ -45,6 +64,43 @@ public class professeurDetails extends AppCompatActivity {
 
         String departement = intent.getStringExtra("departement");
         departement_prof.setText(departement);
+
+
+
+        String photo = intent.getStringExtra("image");
+        Uri imageUrl= Uri.parse(photo);
+
+
+        storageRef = FirebaseStorage.getInstance().getReference("photo/professeur/"+imageUrl);
+        try {
+            File locationFile = File.createTempFile(photo,"jpeg");
+            storageRef.getFile(locationFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                    profile_prof.setImageURI(imageUrl);
+                    //start
+                    Bitmap bitmap = BitmapFactory.decodeFile(locationFile.getAbsolutePath());
+                    profile_prof.setImageBitmap(bitmap);
+                    //end
+                    Toast.makeText(getApplicationContext(),"profile prof",Toast.LENGTH_LONG).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(),"Probleme to take the pic",Toast.LENGTH_LONG).show();
+                }
+            });
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        System.out.println(storageRef.getFile(imageUrl)+"HANA11");
+
+
+
+
+
+        System.out.println(imageUrl+"wsslt");
+
 
 
 
