@@ -24,6 +24,7 @@ import com.example.tp_android.adapetrs.ProfAdapter;
 import com.example.tp_android.databinding.ActivityMainBinding;
 import com.example.tp_android.model.Professeur;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -165,20 +166,18 @@ public class ListeProfesseursActivity extends AppCompatActivity {
 
 
                            builder.setItems(options, new DialogInterface.OnClickListener() {
+                               Professeur p= (Professeur) profView.getItemAtPosition(position);
+                               String nom=p.getNom();
+                               String prenom=p.getPrenom();
+                               String tel=p.getTel();
+                               String image=p.getPhoto();
+                               String departement=p.getDepartement();
+                               //get id
+                               String id = p.getIdProf();
                                @Override
                                public void onClick(DialogInterface dialogInterface, int i) {
                                    if(i==0){
                                         //update is clicked
-                                       Professeur p= (Professeur) profView.getItemAtPosition(position);
-                                       String nom=p.getNom();
-                                       String prenom=p.getPrenom();
-                                       String tel=p.getTel();
-                                       String image=p.getPhoto();
-                                       String departement=p.getDepartement();
-                                       //get id
-                                         String id = p.getIdProf();
-                                       //end get id
-//                                   Toast.makeText(getApplicationContext(),"string to show",Toast.LENGTH_LONG).show();
                                        Intent intent = new Intent(getApplicationContext(), UpdateProfActivity.class);
                                        intent.putExtra("nom",nom);
                                        intent.putExtra("prenom",prenom);
@@ -191,7 +190,18 @@ public class ListeProfesseursActivity extends AppCompatActivity {
 
                                    }else{
                                        //delete is clicked
-
+                                        db.collection("professeur").document(id).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(getApplicationContext(),"Deleted succefully !!",Toast.LENGTH_LONG).show();
+                                                startActivity(new Intent(ListeProfesseursActivity.this, ListeProfesseursActivity.class));
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull  Exception e) {
+                                                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                                            }
+                                        });
                                    }
                                }
                            });
