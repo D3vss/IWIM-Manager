@@ -10,8 +10,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnLogOut;
-    Button btnListProf;
+//    Button btnLogOut;
+    androidx.cardview.widget.CardView btnLogOut;
+    androidx.cardview.widget.CardView btnListProf;
+//    Button btnListProf;
     FirebaseAuth mAuth;
 
     @Override
