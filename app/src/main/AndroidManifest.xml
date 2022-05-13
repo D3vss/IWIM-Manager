@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tp_android">
-        <activity android:name=".UpdateProfActivity"></activity>
+        <activity android:name=".UpdateEtudiantActivity"></activity>
+        <activity android:name=".EtudiantDetailsActivity" />
+        <activity android:name=".addEtudiantActivity" />
+        <activity android:name=".ListEtudiantActivity" />
+        <activity android:name=".UpdateProfActivity" />
         <activity android:name=".AddProfActivity" />
         <activity android:name=".professeurDetails" />
         <activity

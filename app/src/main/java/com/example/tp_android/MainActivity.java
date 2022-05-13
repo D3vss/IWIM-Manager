@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 //    Button btnLogOut;
     androidx.cardview.widget.CardView btnLogOut;
     androidx.cardview.widget.CardView btnListProf;
+    androidx.cardview.widget.CardView btnListEtd;
 //    Button btnListProf;
     FirebaseAuth mAuth;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogOut = findViewById(R.id.btnLogout);
         btnListProf = findViewById(R.id.btnListProf);
+        btnListEtd=findViewById(R.id.btnListEtd);
         mAuth = FirebaseAuth.getInstance();
 
         btnLogOut.setOnClickListener(view ->{
@@ -31,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         });
         btnListProf.setOnClickListener(view ->{
             startActivity(new Intent(MainActivity.this, ListeProfesseursActivity.class));
+        });
+        btnListEtd.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, ListEtudiantActivity.class));
         });
 
     }

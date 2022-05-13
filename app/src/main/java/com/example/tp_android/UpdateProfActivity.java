@@ -34,7 +34,8 @@ public class UpdateProfActivity extends AppCompatActivity {
     EditText tel_prof;
     EditText departement_prof;
     ImageView profile_prof;
-    ImageView update_prof;
+    TextView update_prof;
+    ImageView back;
 
     String nomProf, prenomProf, departementProf, telProf, imageProf, idProf;
 
@@ -55,6 +56,11 @@ public class UpdateProfActivity extends AppCompatActivity {
         tel_prof =(EditText) findViewById(R.id.prof_phone);
         departement_prof =(EditText) findViewById(R.id.prof_dept);
         update_prof = findViewById(R.id.update_prof);
+        back = findViewById(R.id.Back_list);
+
+        back.setOnClickListener(view ->{
+            startActivity(new Intent(UpdateProfActivity.this, ListeProfesseursActivity.class));
+        });
 
         //update code
         Bundle bundle=getIntent().getExtras();

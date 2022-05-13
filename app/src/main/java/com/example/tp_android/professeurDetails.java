@@ -29,8 +29,9 @@ public class professeurDetails extends AppCompatActivity {
     TextView prenom_prof;
     TextView tel_prof;
     TextView departement_prof;
+    TextView backMenu;
     ImageView profile_prof;
-    ImageView backButton;
+    TextView backButton;
     StorageReference storageRef;
 
     @Override
@@ -38,7 +39,7 @@ public class professeurDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professeur_details);
 
-
+        backMenu=findViewById(R.id.Go_back_menu);
         name_prof = (TextView) findViewById(R.id.name_prof);
         profile_prof = (ImageView) findViewById(R.id.profile_image);
         prenom_prof = (TextView) findViewById(R.id.prof_prenom);
@@ -48,6 +49,10 @@ public class professeurDetails extends AppCompatActivity {
 
         backButton.setOnClickListener(view ->{
             startActivity(new Intent(professeurDetails.this, ListeProfesseursActivity.class));
+        });
+
+        backMenu.setOnClickListener(view ->{
+            startActivity(new Intent(professeurDetails.this, MainActivity.class));
         });
 
         Intent intent = getIntent();

@@ -5,12 +5,24 @@ public class Etudiant {
     private String nom;
     private String prenom;
     private String tel;
+    private String idE;
 
-    public Etudiant(String nom, String prenom, String tel){
-        nom= new String(nom);
-        prenom= new String(prenom);
-        tel= new String(tel);
+
+    public Etudiant(String nom, String prenom, String tel, String idE){
+        this.nom= new String(nom);
+        this.prenom= new String(prenom);
+        this.tel= new String(tel);
+        this.idE = new String(idE);
     }
+
+    public String getIdE() {
+        return idE;
+    }
+
+    public void setIdE(String idE) {
+        this.idE = idE;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -35,4 +47,16 @@ public class Etudiant {
         this.tel = tel;
     }
 
+
+    @Override
+    public String toString() {
+        return "Etudiant{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", tel='" + tel + '\'' +
+                ", idE='" + idE + '\'' +
+                '}';
+    }
 }
+
+
