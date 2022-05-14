@@ -36,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+
         btnRegister.setOnClickListener(view ->{
             createUser();
         });
@@ -67,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }
             });
+
         }
     }
 

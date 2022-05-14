@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 //    Button btnListProf;
     FirebaseAuth mAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         btnListEtd.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, ListEtudiantActivity.class));
         });
+
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        System.out.println(currentFirebaseUser.getUid()+"HAna a sahbi");
 
     }
 

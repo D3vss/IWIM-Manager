@@ -42,7 +42,7 @@ public class UpdateProfActivity extends AppCompatActivity {
     FirebaseFirestore db;
 
     StorageReference storageRef;
-    DocumentReference documentReference;
+
 
 
     @Override
@@ -144,7 +144,7 @@ public class UpdateProfActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 //there is an error on update
-                Toast.makeText(getApplicationContext(),"Updated Failed..",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Update Failed..",Toast.LENGTH_LONG).show();
             }
         });
     }

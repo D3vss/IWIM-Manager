@@ -28,6 +28,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -59,10 +61,34 @@ public class ListeProfesseursActivity extends AppCompatActivity {
      db=FirebaseFirestore.getInstance();
 
 
+
+        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        if (currentUser == null) {
+            // No user is signed in
+            System.out.println("Makayn walo");
+        } else {
+            // User logged in
+            System.out.println(currentUser+"HANAMONTANA");
+        }
+
+
         profs=new LinkedList<Professeur>();
         getallProfesseurs();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_prof);
+        String emailCurrentUser=  FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+        if(emailCurrentUser.equals("hamzabessa@gmail.com")) {
+            fab.setVisibility(View.VISIBLE);
+        }
+        else if (emailCurrentUser.equals("younessnaji@gmail.com")){
+            fab.setVisibility(View.VISIBLE);
+        }
+        else{
+            fab.setVisibility(View.GONE);
+        }
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
@@ -108,7 +134,9 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                                         document.getString("tel"),
                                         document.getString("photo"),
                                         document.getString("departement"),
-                                        document.getId());
+                                        document.getId(),
+                                        document.getString("email"),
+                                        document.getString("mdp"));
                                 profs.add(p);
                             }
                             System.out.println(profs);
@@ -145,6 +173,8 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                                    String tel=p.getTel();
                                    String image=p.getPhoto();
                                    String departement=p.getDepartement();
+                                   String email=p.getEmail();
+                                   String mdp= p.getMdp();
 //                                   Toast.makeText(getApplicationContext(),"string to show",Toast.LENGTH_LONG).show();
                                    Intent intent = new Intent(getApplicationContext(), professeurDetails.class);
                                    intent.putExtra("nom",nom);
@@ -152,6 +182,8 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                                    intent.putExtra("tel",tel);
                                    intent.putExtra("image",image);
                                    intent.putExtra("departement",departement);
+                                   intent.putExtra("email",email);
+                                   intent.putExtra("mdp",mdp);
                                    startActivity(intent);
                                }
                        );

@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -48,6 +49,17 @@ public class ListEtudiantActivity extends AppCompatActivity {
        getAllEtudiant();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_etudiant);
+        String emailCurrentUser=  FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        if(emailCurrentUser.equals("hamzabessa@gmail.com")) {
+            fab.setVisibility(View.VISIBLE);
+        }
+        else if (emailCurrentUser.equals("younessnaji@gmail.com")){
+            fab.setVisibility(View.VISIBLE);
+        }
+        else{
+            fab.setVisibility(View.GONE);
+        }
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){

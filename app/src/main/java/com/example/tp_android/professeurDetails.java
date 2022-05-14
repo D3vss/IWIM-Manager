@@ -2,12 +2,18 @@ package com.example.tp_android;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class professeurDetails extends AppCompatActivity {
+    private static final int REQUEST_CALL=1;
 
     TextView name_prof;
     TextView prenom_prof;
@@ -32,6 +39,7 @@ public class professeurDetails extends AppCompatActivity {
     TextView backMenu;
     ImageView profile_prof;
     TextView backButton;
+    ImageView call;
     StorageReference storageRef;
 
     @Override
@@ -46,6 +54,7 @@ public class professeurDetails extends AppCompatActivity {
         tel_prof =(TextView) findViewById(R.id.prof_phone);
         departement_prof =(TextView) findViewById(R.id.prof_dept);
         backButton = findViewById(R.id.Go_back);
+        call =findViewById(R.id.call);
 
         backButton.setOnClickListener(view ->{
             startActivity(new Intent(professeurDetails.this, ListeProfesseursActivity.class));
@@ -54,6 +63,8 @@ public class professeurDetails extends AppCompatActivity {
         backMenu.setOnClickListener(view ->{
             startActivity(new Intent(professeurDetails.this, MainActivity.class));
         });
+
+
 
         Intent intent = getIntent();
 
@@ -75,6 +86,13 @@ public class professeurDetails extends AppCompatActivity {
 
         String photo = intent.getStringExtra("image");
         Uri imageUrl= Uri.parse(photo);
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                makePhoneCall();
+            }
+        });
 
 
         storageRef = FirebaseStorage.getInstance().getReference("photo/professeur/"+imageUrl);
@@ -106,12 +124,27 @@ public class professeurDetails extends AppCompatActivity {
 
         System.out.println(imageUrl+"wsslt");
 
+    }
 
+    private void makePhoneCall(){
+        if(ContextCompat.checkSelfPermission(professeurDetails.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(professeurDetails.this,new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL);
+        }else{
+            String dial= "tel: "+ tel_prof.getText().toString();
+            startActivity(new Intent(Intent.ACTION_CALL,Uri.parse(dial)));
+        }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull  String[] permissions, @NonNull  int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-
-
-
-
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCall();
+            } else {
+                System.out.println("no");
+            }
+        }
     }
 }
