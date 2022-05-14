@@ -7,12 +7,16 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +35,7 @@ import java.io.IOException;
 
 public class professeurDetails extends AppCompatActivity {
     private static final int REQUEST_CALL=1;
+    private static final int REQUEST_SMS=2;
 
     TextView name_prof;
     TextView prenom_prof;
@@ -40,7 +45,9 @@ public class professeurDetails extends AppCompatActivity {
     ImageView profile_prof;
     TextView backButton;
     ImageView call;
+    ImageView message;
     StorageReference storageRef;
+    String messageSent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,7 @@ public class professeurDetails extends AppCompatActivity {
         departement_prof =(TextView) findViewById(R.id.prof_dept);
         backButton = findViewById(R.id.Go_back);
         call =findViewById(R.id.call);
+        message=findViewById(R.id.message);
 
         backButton.setOnClickListener(view ->{
             startActivity(new Intent(professeurDetails.this, ListeProfesseursActivity.class));
@@ -67,6 +75,8 @@ public class professeurDetails extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+
+
 
 
         String nom = intent.getStringExtra("nom");
@@ -83,6 +93,8 @@ public class professeurDetails extends AppCompatActivity {
         departement_prof.setText(departement);
 
 
+        final EditText edittext = new EditText(professeurDetails.this );
+
 
         String photo = intent.getStringExtra("image");
         Uri imageUrl= Uri.parse(photo);
@@ -92,6 +104,44 @@ public class professeurDetails extends AppCompatActivity {
             public void onClick(View view) {
                 makePhoneCall();
             }
+        });
+
+
+
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(professeurDetails.this).setTitle("Message");
+                builder.setTitle("MESSAGE");
+                builder.setMessage("Enter Your Message");
+                builder.setIcon(R.drawable.text_message);
+                builder.setView(edittext);
+                builder.setPositiveButton("YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+                                messageSent=edittext.getText().toString();
+                                sendPhoneSms();
+                                Intent myIntent = new Intent(view.getContext(), ListeProfesseursActivity.class);
+                                startActivity(myIntent);
+                            }
+                        });
+                // Setting Negative "NO" Button
+                builder.setNegativeButton("NO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+                                dialog.cancel();
+                            }
+                        });
+
+                // closed
+
+                // Showing Alert Message
+                builder.show();
+            }
+
+
         });
 
 
@@ -135,6 +185,16 @@ public class professeurDetails extends AppCompatActivity {
         }
     }
 
+    private void sendPhoneSms(){
+        if(ContextCompat.checkSelfPermission(professeurDetails.this,Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(professeurDetails.this,new String[]{Manifest.permission.SEND_SMS},REQUEST_SMS);
+        }else {
+            SmsManager smsManager =SmsManager.getDefault();
+            smsManager.sendTextMessage(tel_prof.getText().toString(),null,messageSent,null,null);
+
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull  String[] permissions, @NonNull  int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -142,9 +202,21 @@ public class professeurDetails extends AppCompatActivity {
         if (requestCode == REQUEST_CALL) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 makePhoneCall();
-            } else {
+            } else if(requestCode ==REQUEST_SMS){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    sendPhoneSms();
+                }
+            }
+
+            else {
                 System.out.println("no");
             }
         }
     }
+
+
+
+
+
+
 }

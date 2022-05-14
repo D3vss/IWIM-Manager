@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     androidx.cardview.widget.CardView btnLogOut;
     androidx.cardview.widget.CardView btnListProf;
     androidx.cardview.widget.CardView btnListEtd;
+    androidx.cardview.widget.CardView btnPdf;
 //    Button btnListProf;
     FirebaseAuth mAuth;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogOut = findViewById(R.id.btnLogout);
         btnListProf = findViewById(R.id.btnListProf);
         btnListEtd=findViewById(R.id.btnListEtd);
+        btnPdf=findViewById(R.id.pdf);
         mAuth = FirebaseAuth.getInstance();
 
         btnLogOut.setOnClickListener(view ->{
@@ -39,8 +41,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, ListEtudiantActivity.class));
         });
 
-        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        System.out.println(currentFirebaseUser.getUid()+"HAna a sahbi");
+        btnPdf.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, AddPdfActivity.class));
+        });
+
+        //get current user
+//        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     }
 

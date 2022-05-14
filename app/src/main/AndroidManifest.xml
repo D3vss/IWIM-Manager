@@ -3,7 +3,10 @@
     package="com.example.tp_android">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tp_android">
-        <activity android:name=".UpdateEtudiantActivity"></activity>
+        <activity android:name=".AddPdfActivity"></activity>
+        <activity android:name=".UpdateEtudiantActivity" />
         <activity android:name=".EtudiantDetailsActivity" />
         <activity android:name=".addEtudiantActivity" />
         <activity android:name=".ListEtudiantActivity" />
