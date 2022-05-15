@@ -78,10 +78,7 @@ public class ListeProfesseursActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_prof);
         String emailCurrentUser=  FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        if(emailCurrentUser.equals("hamzabessa@gmail.com")) {
-            fab.setVisibility(View.VISIBLE);
-        }
-        else if (emailCurrentUser.equals("younessnaji@gmail.com")){
+        if(emailCurrentUser.equals("admin@ensias.com")) {
             fab.setVisibility(View.VISIBLE);
         }
         else{

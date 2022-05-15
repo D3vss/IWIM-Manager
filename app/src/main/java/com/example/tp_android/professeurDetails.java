@@ -56,7 +56,6 @@ public class professeurDetails extends AppCompatActivity {
 
         backMenu=findViewById(R.id.Go_back_menu);
         name_prof = (TextView) findViewById(R.id.name_prof);
-        profile_prof = (ImageView) findViewById(R.id.profile_image);
         prenom_prof = (TextView) findViewById(R.id.prof_prenom);
         tel_prof =(TextView) findViewById(R.id.prof_phone);
         departement_prof =(TextView) findViewById(R.id.prof_dept);
@@ -95,9 +94,6 @@ public class professeurDetails extends AppCompatActivity {
 
         final EditText edittext = new EditText(professeurDetails.this );
 
-
-        String photo = intent.getStringExtra("image");
-        Uri imageUrl= Uri.parse(photo);
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,37 +139,6 @@ public class professeurDetails extends AppCompatActivity {
 
 
         });
-
-
-        storageRef = FirebaseStorage.getInstance().getReference("photo/professeur/"+imageUrl);
-        try {
-            File locationFile = File.createTempFile(photo,"jpeg");
-            storageRef.getFile(locationFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                    profile_prof.setImageURI(imageUrl);
-                    //start
-                    Bitmap bitmap = BitmapFactory.decodeFile(locationFile.getAbsolutePath());
-                    profile_prof.setImageBitmap(bitmap);
-                    //end
-                    Toast.makeText(getApplicationContext(),"profile prof image done",Toast.LENGTH_LONG).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(),"Probleme to take the pic",Toast.LENGTH_LONG).show();
-                }
-            });
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-
-
-        System.out.println(storageRef.getFile(imageUrl)+"HANA11");
-
-        System.out.println(imageUrl+"wsslt");
-
     }
 
     private void makePhoneCall(){

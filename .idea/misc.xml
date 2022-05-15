@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_add_etudiant.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_add_pdf.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_add_prof.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_etudiant_details.xml" value="0.136" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_info.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_list_etudiant.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_liste_professeurs.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_professeur_details.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_update_etudiant.xml" value="0.25" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/activity_update_prof.xml" value="0.176" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/adapter_view_etudiant.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/adpter_item.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/content_liste_professeurs.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/content_login.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/content_register.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/fragment_first.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/moham/OneDrive/Documents/ENSIAS/Android/Tp_android/app/src/main/res/layout/fragment_first2.xml" value="0.10989583333333333" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

@@ -6,11 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/teal_back"
+    android:background="@color/cardview_dark_background"
     tools:context=".ListEtudiantActivity">
 
 
-
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="Liste des etudiants:"
+        android:textSize="24dp"
+        />
 
     <ListView
         android:id="@+id/list_view2"
@@ -23,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:src="@drawable/add_prof"
+        android:background="@color/white"
         />
 
 </LinearLayout>

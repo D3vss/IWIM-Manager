@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1016764222792",
-    "project_id": "iwimapp-9d944",
-    "storage_bucket": "iwimapp-9d944.appspot.com"
+    "project_number": "1008803163423",
+    "project_id": "iwim-manager",
+    "storage_bucket": "iwim-manager.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1016764222792:android:e6316de738fdafa76cf77d",
+        "mobilesdk_app_id": "1:1008803163423:android:d0a3627d760f141546d42a",
         "android_client_info": {
           "package_name": "com.example.tp_android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1016764222792-0ekuqftkb3jq8s9c2a15c214tbj2539q.apps.googleusercontent.com",
+          "client_id": "1008803163423-dprlnr2mdh8meudqufgsrl1564el13m0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDaMBVXgGq5IKa4EfZeDLOPiu44VFAn5Ek"
+          "current_key": "AIzaSyBasdKHwXuIi1dCCSXMiwawk0NYBTVEyvY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1016764222792-0ekuqftkb3jq8s9c2a15c214tbj2539q.apps.googleusercontent.com",
+              "client_id": "1008803163423-dprlnr2mdh8meudqufgsrl1564el13m0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

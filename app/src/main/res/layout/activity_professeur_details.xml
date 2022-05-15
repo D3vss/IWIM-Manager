@@ -288,7 +288,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/BlueNaji"
+    android:background="@color/white"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".professeurDetails">
@@ -297,145 +297,150 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="63dp"
         android:elevation="12dp"
         app:cardBackgroundColor="@color/profileBackground"
         app:cardCornerRadius="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="20dp">
+            android:layout_height="455dp"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/name_prof"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nom professeur"
-                android:gravity="center"
-                android:textAllCaps="true"
-                android:textColor="@color/teal_700"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Nom professeur"
+                android:textAllCaps="true"
+                android:textColor="@color/blackTextColor"
                 android:textSize="30sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/prof_prenom"
-                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:layout_marginTop="4dp"
-                android:text="prenom professeur"
-                android:layout_gravity="center"
+                android:text="Prenom:"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_margin="10dp"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/prof"
-                />
             <TextView
-                android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_marginTop="4dp"
                 android:text="Département :"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"/>
+                android:textColor="@color/blackTextColor"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/prof_dept"
-                android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_marginTop="4dp"
                 android:text="Depart prof"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <TextView
-                android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_marginTop="4dp"
                 android:text="Telephone :"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"/>
+                android:textColor="@color/blackTextColor"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/prof_phone"
-                android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_marginTop="4dp"
                 android:text="212-2648-648-486"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="15dp"
-                android:weightSum="2"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <ImageView
                     android:id="@+id/call"
-                    android:layout_margin="10dp"
-                    android:layout_width="40dp"
+                    android:layout_width="133dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/call_prof"
-                    />
+                    android:layout_margin="10dp"
+                    android:src="@drawable/call_prof" />
+
                 <ImageView
                     android:id="@+id/message"
-                    android:layout_margin="10dp"
-                    android:layout_width="40dp"
+                    android:layout_width="143dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/message_prof"
-                    />
+                    android:layout_margin="10dp"
+                    android:src="@drawable/message_prof" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_height="115dp"
                 android:layout_marginTop="15dp"
-                android:weightSum="2"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <Button
                     android:id="@+id/Go_back"
-                    android:layout_weight="1"
                     android:layout_width="1dip"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:gravity="center"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/listbutton"
+                    android:elevation="10dp"
+                    android:gravity="center"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:layout_marginRight="20dp"
-                    android:elevation="10dp"
-                    android:text="Back to List"
-                    style="@style/Widget.MaterialComponents.Button.Icon"
-                    android:textSize="20dp" />
+                    android:text="Retour a la liste"
+                    android:textSize="10dp" />
+
                 <Button
                     android:id="@+id/Go_back_menu"
-                    android:layout_weight="1"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:gravity="center"
                     android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/backbutton"
+                    android:elevation="10dp"
+                    android:gravity="center"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:elevation="10dp"
-                    android:text="Back to Menu"
-                    style="@style/Widget.MaterialComponents.Button.Icon"
-                    android:textSize="20dp" />
+                    android:text="Retour au menu"
+                    android:textSize="10dp" />
             </LinearLayout>
 
         </LinearLayout>

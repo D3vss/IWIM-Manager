@@ -38,7 +38,7 @@ public class UpdateProfActivity extends AppCompatActivity {
     Button update_prof;
     Button back;
 
-    String nomProf, prenomProf, departementProf, telProf, imageProf, idProf;
+    String nomProf, prenomProf, departementProf, telProf, idProf;
 
     FirebaseFirestore db;
 
@@ -52,7 +52,6 @@ public class UpdateProfActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_prof);
 
         name_prof = (EditText) findViewById(R.id.name_prof);
-        profile_prof = (ImageView) findViewById(R.id.profile_image);
         prenom_prof = (EditText) findViewById(R.id.prof_prenom);
         tel_prof =(EditText) findViewById(R.id.prof_phone);
         departement_prof =(EditText) findViewById(R.id.prof_dept);
@@ -72,36 +71,7 @@ public class UpdateProfActivity extends AppCompatActivity {
             prenomProf=bundle.getString("prenom");
             departementProf=bundle.getString("departement");
             telProf=bundle.getString("tel");
-            imageProf= bundle.getString("image");
             idProf=bundle.getString("idUser");
-
-            Uri imageUrl= Uri.parse(imageProf);
-
-
-            storageRef = FirebaseStorage.getInstance().getReference("photo/professeur/"+imageUrl);
-            try {
-                File locationFile = File.createTempFile(imageProf,"jpeg");
-                storageRef.getFile(locationFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                    profile_prof.setImageURI(imageUrl);
-                        //start
-                        Bitmap bitmap = BitmapFactory.decodeFile(locationFile.getAbsolutePath());
-                        profile_prof.setImageBitmap(bitmap);
-                        //end
-                        Toast.makeText(getApplicationContext(),"profile prof",Toast.LENGTH_LONG).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(),"Probleme to take the pic",Toast.LENGTH_LONG).show();
-                    }
-                });
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-
-
             name_prof.setText(nomProf);
             prenom_prof.setText(prenomProf);
             tel_prof.setText(telProf);
@@ -121,20 +91,17 @@ public class UpdateProfActivity extends AppCompatActivity {
                     String prenomProfesseur =prenom_prof.getText().toString().trim();
                     String departementProfesseur= departement_prof.getText().toString().trim();
                     String telProfesseur = tel_prof.getText().toString().trim();
-                    updateProf(nomPrefesseur,prenomProfesseur,departementProfesseur,imageProf,telProfesseur,idProf);
+                    updateProf(nomPrefesseur,prenomProfesseur,departementProfesseur,telProfesseur);
                     startActivity(new Intent(UpdateProfActivity.this, ListeProfesseursActivity.class));
-
-
                 }
-
             }
         });
 
     }
 
-    private void updateProf(String nomP, String prenomP, String departementP,String imageP ,String telP,String idProf){
+    private void updateProf(String nomP, String prenomP, String departementP, String telP){
         db.collection("professeur")
-                .document(idProf).update("departement",departementP,"nom",nomP,"photo",imageP,"prenom",prenomP,"tel",telP)
+                .document(idProf).update("departement",departementP,"nom",nomP,"photo","prenom",prenomP,"tel",telP)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

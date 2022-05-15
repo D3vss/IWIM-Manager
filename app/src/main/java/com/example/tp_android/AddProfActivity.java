@@ -84,7 +84,6 @@ public class AddProfActivity extends AppCompatActivity {
         telProf = findViewById(R.id.telProf);
         add = findViewById(R.id.add);
         Back_menu = findViewById(R.id.Back_menu);
-        imageProf =findViewById(R.id.prof_image);
         emailProf = findViewById(R.id.emailProf);
         mdpProf = findViewById(R.id.mdpProf);
         db = FirebaseFirestore.getInstance();
