@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,8 +35,8 @@ public class UpdateProfActivity extends AppCompatActivity {
     EditText tel_prof;
     EditText departement_prof;
     ImageView profile_prof;
-    TextView update_prof;
-    ImageView back;
+    Button update_prof;
+    Button back;
 
     String nomProf, prenomProf, departementProf, telProf, imageProf, idProf;
 
@@ -55,12 +56,13 @@ public class UpdateProfActivity extends AppCompatActivity {
         prenom_prof = (EditText) findViewById(R.id.prof_prenom);
         tel_prof =(EditText) findViewById(R.id.prof_phone);
         departement_prof =(EditText) findViewById(R.id.prof_dept);
-        update_prof = findViewById(R.id.update_prof);
-        back = findViewById(R.id.Back_list);
+        update_prof = (Button) findViewById(R.id.update_prof);
+        back = (Button) findViewById(R.id.Back_menu);
 
         back.setOnClickListener(view ->{
             startActivity(new Intent(UpdateProfActivity.this, ListeProfesseursActivity.class));
         });
+
 
         //update code
         Bundle bundle=getIntent().getExtras();

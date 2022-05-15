@@ -10,12 +10,7 @@
     tools:context=".ListEtudiantActivity">
 
 
-    <EditText
-        android:id="@+id/search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Veuillez saisir votre requete"
-        android:textSize="25dp" />
+
 
     <ListView
         android:id="@+id/list_view2"

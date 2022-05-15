@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ public class UpdateEtudiantActivity extends AppCompatActivity {
     EditText etd_prenom;
     EditText etd_phone;
     TextView update_etd;
-    ImageView back;
+    Button back;
 
     String nomEtd, prenomEtd, telEtd, idEtd;
 
@@ -37,11 +38,19 @@ public class UpdateEtudiantActivity extends AppCompatActivity {
         etd_prenom = findViewById(R.id.etd_prenom);
         etd_phone = findViewById(R.id.etd_phone);
         update_etd = findViewById(R.id.update_etd);
-        back = findViewById(R.id.Back_list);
+        back = (Button) findViewById(R.id.Back_list);
 
-        back.setOnClickListener(view -> {
-            startActivity(new Intent(UpdateEtudiantActivity.this, ListEtudiantActivity.class));
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(UpdateEtudiantActivity.this, ListEtudiantActivity.class));
+            }
         });
+
+
+
 
         //update code
         Bundle bundle = getIntent().getExtras();
